@@ -1,3 +1,6 @@
+trigger:
+  - main
+
 pool:
   name: Default
 
@@ -8,6 +11,7 @@ steps:
       goals: 'test'
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.8'
+      javaHomeOption: 'Path'
+      jdkDirectory: 'C:\Program Files\Java\jdk-25.0.2'
       mavenVersionOption: 'Default'
+      mavenDirectory: 'C:\Maven'
