@@ -1,21 +1,13 @@
-trigger:
-  - main
-
 pool:
-  name: LocalPizzXava
+  name: Default
 
 steps:
-
-  - task: Maven@4
+  - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
-      goals: 'clean test'
+      goals: 'test'
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '17'
-
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      jdkVersionOption: '1.8'
+      mavenVersionOption: 'Default'
