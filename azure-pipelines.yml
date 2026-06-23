@@ -5,13 +5,19 @@ pool:
   name: Default
 
 steps:
-  - task: Maven@3
+  - checkout: self
+
+  - script: |
+      set JAVA_HOME=C:\Program Files\Java\jdk-25.0.2
+      set PATH=%JAVA_HOME%\bin;C:\Maven\bin;%PATH%
+      mvn --version
+      mvn test
+    displayName: 'Compilar y ejecutar pruebas con Maven'
+
+  - task: PublishTestResults@2
+    condition: always()
     inputs:
-      mavenPomFile: 'pom.xml'
-      goals: 'test'
-      publishJUnitResults: true
+      testResultsFormat: 'JUnit'
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      javaHomeOption: 'Path'
-      jdkDirectory: 'C:\Program Files\Java\jdk-25.0.2'
-      mavenVersionOption: 'Default'
-      mavenDirectory: 'C:\Maven'
+      failTaskOnFailedTests: false
+    displayName: 'Publicar resultados de pruebas'
