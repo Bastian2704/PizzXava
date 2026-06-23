@@ -36,7 +36,7 @@ public class Pedido {
     @DescriptionsList
     Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true )
     @ListProperties("producto.nombre, cantidad, subtotal, descuentoAplicado, subtotalConDescuento")
     Collection<DetallePedido> detalles;
 

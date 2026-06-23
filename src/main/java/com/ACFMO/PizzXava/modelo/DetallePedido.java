@@ -27,7 +27,7 @@ public class DetallePedido {
 
     @Required
     @Digits(integer = 4, fraction = 0)
-    int cantidad;
+    Integer cantidad;
 
     @ReadOnly
     @Money
